@@ -1,68 +1,43 @@
-# Arpit Agarwal — Portfolio
+<p align="center">
+  <img src="docs/preview.png" alt="Arpit Agarwal — portfolio landing page" width="100%">
+</p>
 
-A single-page, dark, editorial portfolio landing page. Live at **[arpitagarwal1301.github.io](https://arpitagarwal1301.github.io)**.
+<p align="center">
+  <a href="https://arpitagarwal1301.github.io"><img src="https://img.shields.io/badge/live-arpitagarwal1301.github.io-89AACC?style=flat-square" alt="Live site"></a>
+  <a href="https://github.com/arpitagarwal1301/arpitagarwal1301.github.io/actions/workflows/deploy.yml"><img src="https://img.shields.io/github/actions/workflow/status/arpitagarwal1301/arpitagarwal1301.github.io/deploy.yml?branch=main&style=flat-square&label=deploy" alt="Deploy status"></a>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square" alt="React 18">
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?style=flat-square" alt="Vite 6">
+</p>
 
-**Stack:** React 18 · Vite 6 · TypeScript · Tailwind CSS v3 · GSAP · Framer Motion · hls.js · React Router
+> A dark, editorial single-page portfolio — built once, configured from one file.
 
-## Deployment
+A single-page portfolio for a mobile software engineer & AI solution builder. Cinematic HLS video hero, GitHub-driven project cards, and scroll-driven motion — with all content living in one config file.
 
-Pushed to `main` → a [GitHub Actions workflow](.github/workflows/deploy.yml) builds the Vite app and publishes `dist/` to GitHub Pages. No manual steps.
+## Highlights
 
-## Getting started
+- 🎬 **Cinematic hero** — full-screen HLS video background with a GSAP entrance and a cycling role line.
+- 🗂️ **GitHub-driven work** — project cards and a recent-projects list pull straight from repos; private/unreachable repos fall back gracefully to a placeholder and the GitHub profile.
+- ⚙️ **One-file config** — name, links, copy, projects, and stats all live in [`src/lib/content.ts`](src/lib/content.ts); the browser tab title and favicon are generated from it at runtime.
+- 🎞️ **Motion** — Framer Motion scroll reveals, GSAP timelines, and a footer marquee.
+- 📱 **Responsive, forced-dark** — Tailwind design tokens tuned from mobile to desktop.
+- 🚀 **Zero-touch deploy** — push to `main` and GitHub Actions ships it to Pages.
 
-```bash
+## Tech stack
+
+React 18 · Vite 6 · TypeScript · Tailwind CSS v3 · GSAP · Framer Motion · hls.js · React Router
+
+## Develop
+
+```sh
 npm install
 npm run dev      # http://localhost:5173
+npm run build    # type-check + production build → dist/
 ```
-
-```bash
-npm run build    # type-check (tsc -b) + production build to dist/
-npm run preview  # serve the production build
-npm run typecheck
-```
-
-## What's inside
-
-| Section | File | Highlights |
-| --- | --- | --- |
-| Loading screen | `src/components/LoadingScreen.tsx` | RAF 000→100 counter, rotating words, accent progress bar |
-| Hero | `src/components/Hero.tsx` | HLS video background, floating navbar, GSAP entrance, cycling role word, scroll cue |
-| Selected Works | `src/components/SelectedWorks.tsx` | 12-col bento grid (7/5/5/7), halftone overlay, gradient-ring hover label |
-| Journal | `src/components/Journal.tsx` | Horizontal pill rows with thumbnails, read times, dates |
-| Explorations | `src/components/Explorations.tsx` | GSAP ScrollTrigger pinned text + parallax columns + lightbox |
-| Stats | `src/components/Stats.tsx` | Hairline 3-up grid |
-| Contact / Footer | `src/components/Contact.tsx` | Flipped HLS video, GSAP marquee, mailto CTA, social bar |
 
 ## Make it yours
 
-There's **one place to edit**: the `config` block at the top of [`src/lib/content.ts`](src/lib/content.ts).
-Change your name, location, email, social links, and copy there and it propagates everywhere —
-including the role line, footer links, the Dribbble button, the browser tab title, and the favicon.
+Edit the `config` block at the top of [`src/lib/content.ts`](src/lib/content.ts) — name, location, email, socials, projects, and stats. Everything (including the tab title and favicon) updates from there.
 
-```ts
-const config = {
-  name: "Ada Lovelace",          // → hero, footer ©, and auto initials ("AL")
-  initials: "",                  // leave "" to auto-derive from name
-  location: "London",
-  email: "hi@ada.dev",           // powers every mailto link
-  roles: ["Engineer", "Founder"],
-  socials: [ { label: "Twitter", href: "https://x.com/you" }, /* … */ ],
-  // metaTitle / metaDescription auto-generate from the above when left ""
-};
-```
+## Deploy
 
-- The browser tab **title + favicon** are applied at runtime from this config (see [`src/hooks/useSiteMeta.ts`](src/hooks/useSiteMeta.ts)), so `index.html` and `public/favicon.svg` stay generic.
-- Swap the `PROJECTS`, `JOURNAL`, `EXPLORATIONS`, and `STATS` arrays (further down the same file) to change cards and imagery — image URLs are plain strings.
-- Replace `hlsSrc` with your own Mux/HLS `.m3u8` for the background video.
-
-### Shared foundation
-
-- **Design system** — HSL CSS variables + Tailwind tokens in `src/index.css` / `tailwind.config.js`
-  (`bg`, `surface`, `text-primary`, `muted`, `stroke`, `accent`); fonts `font-body` (Inter) / `font-display` (Instrument Serif).
-- **Content + config** — all copy, links, imagery, and the editable `config` block live in `src/lib/content.ts`.
-- **`useHlsVideo(src)`** — `src/hooks/useHlsVideo.ts` attaches an `.m3u8` stream via hls.js (native HLS fallback).
-- **`<GradientRing>`** — `src/components/ui/GradientRing.tsx`, the reusable accent gradient border ring.
-- **`<SectionHeader>`** — `src/components/ui/SectionHeader.tsx`, shared eyebrow + display heading + CTA.
-- Smooth-scroll nav (`scrollToId` in `src/lib/utils.ts`) and a Framer Motion page transition in `src/App.tsx`.
-
-The page is forced-dark (no light mode). Imagery is loaded from Unsplash; swap the URLs in `src/lib/content.ts` to customize.
+Every push to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the app and publishes `dist/` to GitHub Pages.
