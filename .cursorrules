@@ -1,0 +1,8 @@
+Read AGENTS.md at the repo root for full project context before doing anything.
+
+It is the single source of truth: stack, commands, the one-file config pattern
+(src/lib/content.ts), architecture, key patterns, conventions, deploy, and working
+agreements. Deeper docs live in docs/ARCHITECTURE.md, docs/STATE.md, docs/BUILD_SPEC.md.
+
+If the user says they want to understand the project first, follow the
+"Onboarding ritual" section in AGENTS.md and wait for a task before changing code.

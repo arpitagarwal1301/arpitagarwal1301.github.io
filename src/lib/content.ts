@@ -197,7 +197,7 @@ export interface SocialLink {
  *  DERIVED  —  values the components consume. Do not edit; change `config`.
  * ==========================================================================*/
 
-/** Turn a full name into 1–2 uppercase initials ("Michael Smith" → "MS"). */
+/** Turn a full name into 1–2 uppercase initials ("Arpit Agarwal" → "AA"). */
 function deriveInitials(name: string): string {
   const parts = name.trim().split(/\s+/).filter(Boolean);
   if (parts.length === 0) return "—";
